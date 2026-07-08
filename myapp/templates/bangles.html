@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>
+        my website
+    </title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <h1 >Trendy</h1>
+            <div>
+                <a href="./index.html">Home</a>
+                <a href="{% url 'Category' %}">Category</a>
+                <a href="{% url 'cart' %}">Cart:<span id="cart-count">0</span></a>
+                <a href="{% url 'order' %}">Order:<span id="orders-count">0</span></a>
+                <a href="{%  url 'about; %}">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="product-container">
+        <div class="product-card">
+            <img src="{% static 'images/bangles.png' %}" alt="product">
+            <h3>Bangle</h3>
+            <p>$75,000</p>
+            <button id="addbtn" onclick="addToCart('Bangle','{% static "images/bangles.png" %}','Rs.75,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Bangle','{% static "images/bangles.png" %}','Rs.75,000' )">Buy</button>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/bangles1.png' %}" alt="product">
+            <h3>Bangle</h3>
+            <p>$80,000</p>
+            <button id="addbtn" onclick="addToCart('Bangle','{% static "images/bangles1.png" %}','Rs.80,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Bangle','{% static "images/bangles1.png" %}','Rs.80,000' )">Buy</button>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/bangles2.png' %}" alt="product">
+            <h3>Bangle</h3>
+            <p>$86,000</p>
+            <button id="addbtn" onclick="addToCart('Bangle','{% static "images/bangles2.png" %}','Rs.86,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Bangle','{% static "images/bangles2.png" %}','Rs.86,000' )">Buy</button>
+        </div>
+    </div>
+<script>
+    let cart =
+JSON.parse(localStorage.getItem("cart"))
+|| [];
+
+document.getElementById(
+"cart-count"
+).innerText = cart.length;
+
+
+function addToCart(
+productName,
+productImage,
+productPrice
+){
+
+    let product = {
+        name: productName,
+        image: productImage,
+        price: productPrice
+    };
+
+    cart.push(product);
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    document.getElementById(
+    "cart-count"
+    ).innerText =
+    cart.length;
+
+
+}
+</script>
+</body>
+

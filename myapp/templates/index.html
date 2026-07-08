@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>
+        my website
+    </title>
+    <link  href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <h1 >Trendy</h1>
+            <div>
+                <a href="/">Home</a>
+                <a href="{% url 'category' %}">Category</a>
+                <a href="{% url 'cart' %}">Cart</a>
+                <a href="{% url 'order' %}">Order</a>
+                <a href="{% url 'about' %}">About</a>
+            </div>
+        </div>
+    </nav>
+    <section class="main">
+        <div class="overlay">
+            <h1>Trendy Golds Jewellery</h1>
+            <button onclick="shop()" >Shop Now</button>
+        </div>
+    </section>
+
+
+    <section class="collection">
+
+        <div class="content">
+            <h2>Gold For<br>Every Event</h2>
+
+            <p>
+                We provide elegant, high-quality jewellery
+                and clothing that speaks to your sense
+                of style and identity.
+            </p>
+
+            <button onclick="shop()">Shop Gold</button>
+        </div>
+
+        <div class="gallery">
+            <img src="{% static 'images/f7f9592586ba9f7751d39cff3264e69d.png' %}" alt="Earring">
+            <img src="{% static 'images/0bce5dea7719b01e3dabbfe868a722f7.png' %}" alt="Necklace">
+        </div>
+
+    </section>
+<script>
+    function shop(){
+    window.location.href="{% url 'category' %}";
+    }
+</script>
+</body>
+</html>

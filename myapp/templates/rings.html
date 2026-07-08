@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>
+        my website
+    </title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+    <style>
+    .search-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    }
+
+    .search-container input{
+    width: 350px;
+    height: 40px;
+    padding: 15px;
+    border-radius: 25px;
+    border: 1px solid black;
+    font-size: 18px;
+    box-sizing: border-box;
+    }
+
+
+    .product-container{
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        flex-wrap: wrap;
+    }
+    .product-card{
+        background:white;
+        height: 400px;
+        width: 350px;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        margin-top: 30px;
+    }
+    .product-card img{
+        width:100%;
+        border-radius: 10px;
+    }
+    .product-card button{
+        background-color: rgb(235, 235, 165);
+        padding: 10px 15px;
+        color: black;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+
+    }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <h1 >Trendy</h1>
+            <div>
+                <a href="/">Home</a>
+                <a href="{% url 'category' %}">Category</a>
+                <a href="{% url 'cart' %}">Cart</a>
+                <a href="{% url 'order' %}">Order</a>
+                <a href="{% url 'about' %}">About</a>
+            </div>
+        </div>
+    </nav>
+<div class="search-container">
+            <input type="search" placeholder="search" id="search-input">
+
+    </div>
+
+
+    <div class="product-container">
+        <div class="product-card">
+            <img src="{% static 'images/ring1.png' %}" alt="product">
+            <h3>Ring</h3>
+            <p>$50,000</p>
+            <button id="addbtn" onclick="addToCart('Ring','{% static "images/ring1.png" %}','Rs.50,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Ring','{% static "images/ring1.png" %}','Rs.50,000' )">Buy</button>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/ring2.png' %}" alt="product">
+            <h3>Ring</h3>
+            <p>$59,000</p>
+            <button id="addbtn" onclick="addToCart('Ring','{% static "images/ring2.png" %}','Rs.59,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Ring','{% static "images/ring2.png" %}','Rs.59,000' )">Buy</button>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/ring3.png' %}" alt="product">
+            <h3>Ring</h3>
+            <p>$61,000</p>
+            <button id="addbtn" onclick="addToCart('Ring','{% static "images/ring3.png" %}','Rs.61,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Ring','{% static "images/ring3.png" %}','Rs.61,000' )">Buy</button>
+
+        </div>
+    </div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>

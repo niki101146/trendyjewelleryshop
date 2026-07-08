@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>
+        my website
+    </title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+
+<style>
+
+ body{
+    background-color: #f4f4f4;
+    font-family: Georgia, serif;
+}
+
+h1{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#order-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.order-card{
+    background: white;
+    width: 320px;
+    border-radius: 12px;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.order-card img{
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.order-card h3{
+    margin: 12px 0 5px;
+    font-size: 24px;
+}
+
+.price{
+    font-size: 22px;
+    font-weight: bold;
+    color: #222;
+}
+
+.qty{
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.buttons{
+    margin-top: 15px;
+}
+
+.remove-btn{
+    background-color: rgb(235, 235, 165);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.confirm-btn{
+    background-color: rgb(235, 235, 165);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.confirm-btn:hover{
+    background-color: rgb(220, 220, 140);
+}
+
+.remove-btn:hover{
+    background-color: rgb(220, 220, 140);
+}
+
+</style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <h1 >Trendy</h1>
+            <div>
+                <a href="/">Home</a>
+                <a href="{% url 'category' %}">Category</a>
+                <a href="{% url 'cart' %}">Cart</a>
+                <a href="{% url 'order' %}">Order</a>
+                <a href="{% url 'about' %}">About</a>
+            </div>
+        </div>
+    </nav>
+<h1>📦 My Orders</h1>
+
+<div id="order-list"></div>
+
+   <script>
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+let html = "";
+
+if (orders.length === 0) {
+
+    html = `
+    <div style="grid-column:1/-1;text-align:center;">
+        <h2>No orders found 📦</h2>
+        <p>Place an order from the cart page.</p>
+    </div>
+    `;
+
+} else {
+
+    orders.forEach((order, index) => {
+
+        html += `
+        <div class="order-card">
+            <img src="${order.image}" alt="${order.name}">
+
+            <h3>${order.name}</h3>
+
+            <p><strong>${order.price}</strong></p>
+
+            <p>Ordered on: ${order.date}</p>
+
+            <button class="confirm-btn"
+                    onclick="window.location.href='{% url 'confirm' %}' ">
+                Confirm
+            </button>
+
+
+            <button class="remove-btn"
+                    onclick="removeOrder(${index})">
+                Cancel
+            </button>
+        </div>
+        `;
+    });
+}
+
+document.getElementById("order-list").innerHTML = html;
+
+function removeOrder(index){
+
+    orders.splice(index, 1);
+
+    localStorage.setItem(
+        "orders",
+        JSON.stringify(orders)
+    );
+
+    location.reload();
+}
+</script>
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>

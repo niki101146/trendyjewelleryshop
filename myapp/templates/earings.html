@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>
+        my website
+    </title>
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+    <style>
+        .search-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    }
+
+    .search-container input{
+    width: 350px;
+    height: 40px;
+    padding: 15px;
+    border-radius: 25px;
+    border: 1px solid black;
+    font-size: 18px;
+    box-sizing: border-box;
+    }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <h1 >Trendy</h1>
+            <div>
+                <a href="/">Home</a>
+                <a href="{% url 'category' %}">Category</a>
+                <a href="{% url 'cart' %}">Cart</a>
+                <a href="{% url 'order' %}">Order</a>
+                <a href="{% url 'about' %}">About</a>
+            </div>
+        </div>
+    </nav>
+    <div class="search-container">
+
+            <input type="text" placeholder="search" id="search" onkeyup="search()">
+
+    </div>
+
+
+    <div class="product-container">
+        <div class="product-card">
+            <img src="{% static 'images/0d1b4b71494124d4c519258f373b93fc.png' %}" alt="product">
+            <h3>Earing</h3>
+            <p>$50,000</p>
+            <button id="addbtn" onclick="addToCart('Earing','{% static "images/0d1b4b71494124d4c519258f373b93fc.png" %}','Rs.50,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Earing','{% static "images/0d1b4b71494124d4c519258f373b93fc.png" %}','Rs.50,000' )">Buy</button>
+
+
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/f7f9592586ba9f7751d39cff3264e69d.png' %}" alt="product">
+            <h3>Earing</h3>
+            <p>$40,000</p>
+            <button id="addbtn" onclick="addToCart('Earing','{% static "images/f7f9592586ba9f7751d39cff3264e69d.png" %}','Rs.40,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Earing','{% static "images/f7f9592586ba9f7751d39cff3264e69d.png" %}','Rs.40,000' )">Buy</button>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/earing1.png' %}" alt="product">
+            <h3>Earing</h3>
+            <p>$45,000</p>
+            <button id="addbtn" onclick="addToCart('Earing','{% static "images/earing1.png" %}','Rs.40,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Earing','{% static "images/earing1.png" %}','Rs.40,000' )">Buy</button>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/earing3.png' %}" alt="product">
+            <h3>Earing</h3>
+            <p>$64,000</p>
+            <button id="addbtn" onclick="addToCart('Earing','{% static "images/earing3.png" %}','Rs.64,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Earing','{% static "images/earing3.png" %}','Rs.64,000' )">Buy</button>
+        </div>
+
+        <div class="product-card">
+            <img src="{% static 'images/earing2.png' %}" alt="product">
+            <h3>Earing</h3>
+            <p>$54,000</p>
+            <button id="addbtn" onclick="addToCart('Earing','{% static "images/earing2.png" %}','Rs.54,000' )">Add to Cart</button>
+            <button id="buybtn" onclick="buyNow('Earing','{% static "images/earing2.png" %}','Rs.64,000' )">Buy</button>
+        </div>
+    </div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+

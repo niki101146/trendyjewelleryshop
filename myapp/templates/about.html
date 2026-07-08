@@ -1,0 +1,272 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>
+        About
+    </title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+    <style>
+        .hero{
+    height:60vh;
+    background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+    url('/static/images/main.png');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.hero-content{
+    text-align:center;
+    color:white;
+}
+
+.hero-content h1{
+    font-size:55px;
+}
+
+.hero-content p{
+    font-size:22px;
+}
+
+        .why-us{
+    width:90%;
+    margin:auto;
+    padding:50px 0;
+}
+
+.why-us h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.feature-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.feature-card:hover{
+    transform:translateY(-5px);
+    transition:.3s;
+}
+
+        .stats{
+    background:#d6cfa2;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    padding:40px;
+    margin-top:50px;
+}
+
+.stats div{
+    text-align:center;
+    margin:10px;
+}
+
+.stats h2{
+    font-size:40px;
+}
+
+        .contact{
+    padding:50px;
+}
+
+.contact-box{
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.contact-box div{
+    background:#f9f9f9;
+    padding:20px;
+    width:300px;
+    text-align:center;
+    border-radius:10px;
+}
+
+        .aboutus{
+    width: 85%;
+    margin: 60px auto;
+    padding: 50px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.aboutus h1{
+    font-size: 42px;
+    color: #333;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.aboutus h1::after{
+    content: '';
+    width: 80px;
+    height: 4px;
+    background: #d6cfa2;
+    display: block;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+.aboutus p{
+    font-size: 19px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1 >Trendy</h1>
+            <div>
+                <a href="/">Home</a>
+                <a href="{% url 'category' %}">Category</a>
+                <a href="{% url 'cart' %}">Cart</a>
+                <a href="{% url 'order' %}">Order</a>
+                <a href="{% url 'about' %}">About</a>
+            </div>
+        </div>
+    </header>
+
+     <section class="hero">
+    <div class="hero-content">
+        <h1>About Trendy Jewellery</h1>
+        <p>Crafting timeless elegance with passion and perfection.</p>
+    </div>
+</section>
+
+<section class="aboutus">
+
+    <h1>About Trendy Jewellery</h1>
+
+    <p>
+        At Trendy Jewellery Shop, we believe jewellery is more than an accessory—it's a reflection of your personality, confidence, and style.
+    </p>
+
+    <p>
+        We bring together modern trends and timeless elegance to create collections that make every moment special.
+    </p>
+
+    <p>
+        Whether you're looking for everyday beauty or a statement piece for a celebration, our carefully curated designs are crafted to suit every occasion.
+    </p>
+
+    <p>
+        Our commitment is to provide premium quality, affordable pricing, and exceptional customer satisfaction.
+    </p>
+
+    <div class="about-highlight">
+        <div>
+            <h3>🎯 Our Mission</h3>
+            <p>To make stylish and elegant jewellery accessible to everyone.</p>
+        </div>
+
+        <div>
+            <h3>🌟 Our Vision</h3>
+            <p>To become the most trusted destination for trendy jewellery shopping.</p>
+        </div>
+    </div>
+
+</section>
+
+    <div class="why-us">
+
+    <h2>Why Choose Us?</h2>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <h3>✨ Premium Quality</h3>
+            <p>Every piece is crafted with precision and elegance.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🚚 Fast Delivery</h3>
+            <p>Quick and secure shipping across the country.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>💎 Latest Designs</h3>
+            <p>Trendy collections inspired by modern fashion.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🔒 Secure Payment</h3>
+            <p>Safe and trusted payment methods.</p>
+        </div>
+
+    </div>
+</div>
+
+    <div class="stats">
+
+    <div>
+        <h2>5000+</h2>
+        <p>Happy Customers</p>
+    </div>
+
+    <div>
+        <h2>1000+</h2>
+        <p>Unique Designs</p>
+    </div>
+
+    <div>
+        <h2>10+</h2>
+        <p>Years Experience</p>
+    </div>
+
+    <div>
+        <h2>24/7</h2>
+        <p>Customer Support</p>
+    </div>
+
+</div>
+
+    <div class="contact">
+
+    <h2>Get In Touch</h2>
+
+    <div class="contact-box">
+
+        <div>
+            <h3>📍 Address</h3>
+            <p>123 Fashion Street<br>Chennai - 600001</p>
+        </div>
+
+        <div>
+            <h3>📞 Call Us</h3>
+            <p>+91 98765 43210</p>
+        </div>
+
+        <div>
+            <h3>✉ Email</h3>
+            <p>support@trendyjewellery.com</p>
+        </div>
+
+    </div>
+    </div>
+
+</body>
+
+
