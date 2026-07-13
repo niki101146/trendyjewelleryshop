@@ -27,7 +27,11 @@ SECRET_KEY = 'django-insecure-!@@o=*wv!u46zh!h7^q_(j)##ca0=5(a_bv*34)619_!%a!hdl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+     "trendyjewelleryshop-2.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
