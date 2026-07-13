@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Shopping</title>
      <style>
         *{
@@ -17,18 +19,22 @@
             justify-content:center;
             align-items:center;
             min-height:100vh;
+            padding: 10px;
         }
 
         .form-container{
             background:white;
-            width:450px;
+            width: 100%;
+            max-width: 450px;
             padding:30px;
             border-radius:15px;
             box-shadow:0 4px 15px rgba(0,0,0,0.15);
+            margin: 10px;
         }
 
         h2{
             color:rgb(212, 202, 157);
+            margin-bottom: 20px; 
         }
 
         form p{
@@ -68,6 +74,7 @@
             font-size:18px;
             cursor:pointer;
             transition:0.3s;
+            margin-top: 10px;
         }
 
         button:hover{
@@ -84,8 +91,59 @@
         {{form.as_p}}
         <button type="submit">confirm</button>
     </form>
-
-
     </div>
+
+<script>
+document.querySelector("form").addEventListener("submit", function () {
+
+    let product = JSON.parse(localStorage.getItem("currentProduct"));
+
+    if (product) {
+
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+        orders.push({
+            name: product.name,
+            image: product.image,
+            price: product.price,
+            date: new Date().toLocaleString()
+        });
+
+        localStorage.setItem("orders", JSON.stringify(orders));
+
+        localStorage.removeItem("currentProduct");
+    }
+
+});
+
+
+document.querySelector("form").addEventListener("submit", function () {
+
+    let product = JSON.parse(localStorage.getItem("currentProduct"));
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let index = localStorage.getItem("cartIndex");
+
+    if (product) {
+
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+        product.date = new Date().toLocaleDateString();
+
+        orders.push(product);
+
+        localStorage.setItem("orders", JSON.stringify(orders));
+
+        if(index !== null){
+            cart.splice(index,1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        localStorage.removeItem("currentProduct");
+        localStorage.removeItem("cartIndex");
+    }
+
+});
+</script>
+
 </body>
 </html>

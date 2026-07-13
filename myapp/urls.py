@@ -14,7 +14,9 @@ urlpatterns = [
     path('rings/',views.rings,name='rings'),
     path('bracelets/',views.bracelets,name='bracelets'),
     path('cart/confirm/',views.confirmation,name='confirm'),
+
     path('cart/confirm/email/',views.email,name='confirmation_email'),
+
 
 
 

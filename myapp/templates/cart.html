@@ -1,100 +1,115 @@
 {% load static %}
 <!DOCTYPE html>
-<head xmlns="">
-    <title>
-        my website
-    </title>
+<html lang="en">
+<head>
+    <title>my website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'css/style.css' %}" rel="stylesheet" >
+    
     <style>
     body{
-    background-color: #f4f4f4;
-    font-family: Georgia, serif;
-}
+        background-color: #f4f4f4;
+        font-family: Georgia, serif;
+    }
+    .page-title{
+        text-align:center;
+        margin-top:20px;
+    }
 
-h1{
-    text-align: center;
-    margin-top: 20px;
-}
+    #cart-items{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 20px;
+    }
 
-#cart-items{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px;
-}
+    .cart-card{
+        background: white;
+        width: 320px; 
+        max-width: 100%; 
+        border-radius: 12px;
+        text-align: center;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
 
-.cart-card{
-    background: white;
-    width: 320px;
-    border-radius: 12px;
-    text-align: center;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+    .cart-card img{
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
 
-.cart-card img{
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 10px;
-}
+    .cart-card h3{
+        margin: 12px 0 5px;
+        font-size: 24px;
+    }
 
-.cart-card h3{
-    margin: 12px 0 5px;
-    font-size: 24px;
-}
+    .price{
+        font-size: 22px;
+        font-weight: bold;
+        color: #222;
+    }
 
-.price{
-    font-size: 22px;
-    font-weight: bold;
-    color: #222;
-}
+    .qty{
+        margin: 10px 0;
+        font-size: 18px;
+    }
 
-.qty{
-    margin: 10px 0;
-    font-size: 18px;
-}
+    .buttons{
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
 
-.buttons{
-    margin-top: 15px;
-}
+    .remove-btn, .buy-btn{
+        background-color: rgb(235, 235, 165);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        flex: 1; 
+    }
 
-.remove-btn{
-    background-color: rgb(235, 235, 165);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-}
-.buy-btn{
-    background-color: rgb(235, 235, 165);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-}
-.buy-btn:hover{
-    background-color: rgb(220, 220, 140);
-}
+    .buy-btn:hover, .remove-btn:hover{
+        background-color: rgb(220, 220, 140);
+    }
 
+    @media (max-width: 768px) {
 
-.remove-btn:hover{
-    background-color: rgb(220, 220, 140);
-}
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+                text-align: center;
+            }
+            .navbar div {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            .navbar a {
+                padding-right: 0 !important;
+                margin: 0 5px;
+                font-size: 16px;
+            }
 
-
-
-</style>
-
+        .cart-card img {
+            height: 220px; 
+        }
+    }
+    </style>
 </head>
 
 <body>
     <nav>
         <div class="navbar">
-            <h1 >Trendy</h1>
+            <h1>Trendy</h1>
             <div>
                 <a href="/">Home</a>
                 <a href="{% url 'category' %}">Category</a>
@@ -105,92 +120,82 @@ h1{
         </div>
     </nav>
 
-
-    <h1>🛒 My Cart</h1>
+    <h1 class="page-title">🛒 My Cart</h1>
 
     <div id="cart-items"></div>
 
     <script src="{% static 'js/script.js' %}"></script>
     <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let html = "";
 
-let html = "";
-
-if (cart.length === 0) {
-
-    html = `
-    <div style="text-align:center; width:100%;">
-        <h2>Your cart is empty 🛒</h2>
-        <p>Add some products to your cart.</p>
-    </div>
-    `;
-
-} else {
-
-    cart.forEach((item, index) => {
-
-        html += `
-        <div class="cart-card">
-            <img src="${item.image}" alt="${item.name}">
-            <h3>${item.name}</h3>
-            <p class="price">${item.price}</p>
-
-            <div class="qty">
-                Quantity: ${item.quantity}
-            </div>
-
-
-            <div class="buttons">
-                <button class="buy-btn" onclick="buyItem(${index})">
-                    Buy
-                </button>
-                <button class="remove-btn" onclick="removeItem(${index})">
-                    Remove
-                </button>
-            </div>
+    if (cart.length === 0) {
+        html = `
+        <div style="text-align:center; width:100%; padding: 40px 20px;">
+            <h2>Your cart is empty 🛒</h2>
+            <p>Add some products to your cart.</p>
         </div>
         `;
-    });
-}
+    } else {
+        cart.forEach((item, index) => {
+            html += `
+            <div class="cart-card">
+                <img src="${item.image}" alt="${item.name}">
+                <h3>${item.name}</h3>
+                <p class="price">${item.price}</p>
+                <div class="qty">Quantity: ${item.quantity}</div>
+                <div class="buttons">
+                    <button class="buy-btn" onclick="buyItem(${index})">Buy</button>
+                    <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                </div>
+            </div>
+            `;
+        });
+    }
 
-document.getElementById("cart-items").innerHTML = html;
+    document.getElementById("cart-items").innerHTML = html;
 
-function removeItem(index) {
-    cart.splice(index, 1);
+    
+    function removeItem(index) {
+        if (cart[index]) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1; // Decrease quantity by 1
+                alert(`Reduced quantity of ${cart[index].name}!`);
+            } else {
+                alert(`${cart[index].name} removed from cart!`);
+                cart.splice(index, 1); // Remove entirely if quantity is 1
+            }
+            
+            localStorage.setItem("cart", JSON.stringify(cart));
+            location.reload();
+        }
+    }
 
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
+<!--    function buyItem(index) {-->
+<!--        let orders = JSON.parse(localStorage.getItem("orders")) || [];-->
+<!--        let product = cart[index];-->
+<!--        product.date = new Date().toLocaleDateString();-->
+<!--        orders.push(product);-->
+<!--        localStorage.setItem("orders", JSON.stringify(orders));-->
 
-    location.reload();
-}
-function buyItem(index) {
-
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+<!--        // Remove from cart after buying-->
+<!--        cart.splice(index, 1);-->
+<!--        localStorage.setItem("cart", JSON.stringify(cart));-->
+<!--        window.location.href = "{% url 'order' %}";-->
+<!--    }-->
+        function buyItem(index) {
 
     let product = cart[index];
 
-    product.date = new Date().toLocaleDateString();
+    // Save the selected product temporarily
+    localStorage.setItem("currentProduct", JSON.stringify(product));
 
-    orders.push(product);
+    // Save the cart index so it can be removed later
+    localStorage.setItem("cartIndex", index);
 
-    localStorage.setItem(
-        "orders",
-        JSON.stringify(orders)
-    );
-
-    // Remove from cart after buying
-    cart.splice(index, 1);
-
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-    window.location.href = "{% url 'order' %}";
+    // Open the order form
+    window.location.href = "{% url 'confirm' %}";
 }
     </script>
-
 </body>
 </html>
