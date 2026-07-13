@@ -27,11 +27,7 @@ SECRET_KEY = 'django-insecure-!@@o=*wv!u46zh!h7^q_(j)##ca0=5(a_bv*34)619_!%a!hdl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-     "trendyjewelleryshop-2.onrender.com",
-    "localhost",
-    "127.0.0.1",
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -54,6 +50,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    ...
 ]
 
 ROOT_URLCONF = 'mypro.urls'
@@ -130,5 +129,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "nikildanniki@gmail.com"
 EMAIL_HOST_PASSWORD = "goqi ndpf kgsu pncq"
 
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
